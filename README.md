@@ -30,7 +30,8 @@ python3 -m http.server 8000   # http://localhost:8000
 
 ## 검색(SEO)
 - 검색 결과의 제목 · 설명은 `<title>` · `<meta name="description">`, 링크 미리보기는 `og:` 값이다(서로 다르게 둔다)
-- `robots.txt` · `sitemap.xml` · JSON-LD(Organization · WebSite · SoftwareApplication)가 있다. 페이지가 늘면 `sitemap.xml` 에 더한다
+- `robots.txt` · `sitemap.xml` · JSON-LD(Organization · WebSite · SoftwareApplication · FAQPage)가 있다. 페이지가 늘면 `sitemap.xml` 에 더한다
+- "자주 묻는 질문"(`#faq`)을 고치면 `<head>` 의 FAQPage JSON-LD 도 같은 글로 고친다. 답은 앱의 실제 동작(docs/release-1.0.0.md)과 맞아야 한다
 - 구글 서치 콘솔 · 네이버 서치어드바이저에 `byeolmyeong.com` 을 등록하고 사이트맵을 제출한다(소유 확인은 Cloudflare DNS 의 TXT 레코드)
 
 ## 출시 전에 할 것

@@ -60,6 +60,79 @@
   ]
 }
 </script>
+<!-- 자주 묻는 질문(본문 #faq 와 같은 내용) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "출생 차트(네이탈 차트)가 뭐예요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "태어난 순간 해와 달, 행성이 하늘의 어느 별자리 · 어느 자리에 있었는지 그린 그림이에요. 서양 점성술은 이 그림으로 사람을 읽어요. 별명은 생년월일과 태어난 시각, 태어난 곳으로 내 출생 차트를 계산해요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "태어난 시각을 모르면 볼 수 없나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "볼 수 있어요. 시각을 '모름'으로 고르면 태어난 곳도 묻지 않고, 시각이 있어야 계산되는 상승궁과 하우스만 빼고 해와 달, 행성의 별자리로 풀어 드려요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "사주와는 뭐가 달라요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "사주는 태어난 해 · 달 · 날 · 시를 동양의 음양오행으로 읽고, 서양 점성술은 태어난 순간 하늘에 있던 해와 달, 행성의 자리를 읽어요. 별명은 서양 점성술의 출생 차트로 풀어요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "점성술을 하나도 몰라도 읽을 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 풀이 본문에는 하우스나 각도 같은 용어를 쓰지 않아요. 어느 별, 어느 자리에서 나온 말인지는 문단 머리에 작게 적어 두어서 궁금할 때만 보면 돼요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "별자리 궁합 점수는 어떻게 나와요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "두 사람의 출생 차트를 겹쳐, 상대의 행성이 내 해 · 달 · 수성 · 금성 · 화성과 만드는 각도로 계산해요. 연애 · 친구 · 일 · 가족마다 보는 무게가 달라 사이마다 점수가 다르고, 나를 기준으로 40점에서 100점 사이로 나와요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "새턴 리턴(토성 회귀)도 볼 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 토성이 태어날 때의 자리로 돌아오는 만 29~30세 무렵(토성 귀환)이 두 번째 변곡점이에요. 내 차트로 계산한 해와 함께, 같은 나이라도 사람마다 다르게 오는 변화 · 기회 · 만남의 시기를 보여 드려요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "무료예요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "지금은 요약 풀이부터 심층 리포트, 별자리 궁합까지 모두 무료이고 횟수 제한도 없어요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "내 출생 정보는 어디에 저장돼요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "내 출생 정보는 내 계정에만 저장되고, 궁합을 볼 때 넣은 상대의 출생 정보는 저장하지 않아요. 공유 카드에도 출생 정보는 들어가지 않아요."
+      }
+    }
+  ]
+}
+</script>
 <!-- 글꼴: Pretendard 공식 배포(쓰는 글자만 내려받는 동적 서브셋). 앱과 같은 굵기 400 · 500 · 600 만 쓴다 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
@@ -302,6 +375,15 @@ h3 { font-size: 18px; line-height: 26px; font-weight: var(--w-semibold); letter-
 .share .foot svg { height: 22px; width: auto; aspect-ratio: 212 / 112; }
 .share .foot span { font-size: 11px; color: var(--hint); }
 .note { margin-top: 28px; font-size: 14px; line-height: 20px; color: var(--hint); display: flex; gap: 8px; align-items: baseline; }
+
+/* 자주 묻는 질문: 왼쪽 제목은 넓은 화면에서 따라 내려오고, 오른쪽은 선으로 나뉜 질문 · 답 */
+.faq-head { position: sticky; top: 32px; }
+.faq { display: grid; }
+.faq-item { display: grid; gap: 8px; padding-block: 22px; border-top: 1px solid var(--hair); }
+.faq-item:last-child { border-bottom: 1px solid var(--hair); }
+.faq-item h3 { font-size: 17px; line-height: 26px; }
+.faq-item p { font-size: 15px; line-height: 24px; color: var(--gray); }
+@media (max-width: 860px) { .faq-head { position: static; } }
 
 /* 약속 */
 .promise { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; padding-block: 48px; }
@@ -722,6 +804,26 @@ h3 { font-size: 18px; line-height: 26px; font-weight: var(--w-semibold); letter-
       <li><b>웹 · iOS · Android</b><span>같은 계정으로 어디서든 이어서 봐요.</span></li>
       <li><b>상대 정보는 남기지 않아요</b><span>궁합에 넣은 상대의 출생 정보는 저장하지 않아요.</span></li>
     </ul>
+  </section>
+
+  <!-- 자주 묻는 질문: 사람들이 실제로 검색하는 질문에 답한다. 고치면 <head> 의 FAQPage JSON-LD 도 같이 고친다 -->
+  <section class="sec rule" id="faq">
+    <div class="wrap split">
+      <div class="sec-head faq-head">
+        <p class="eyebrow">자주 묻는 질문</p>
+        <h2>처음이라면 궁금한 것들</h2>
+      </div>
+      <div class="faq">
+          <div class="faq-item"><h3>출생 차트(네이탈 차트)가 뭐예요?</h3><p>태어난 순간 해와 달, 행성이 하늘의 어느 별자리 · 어느 자리에 있었는지 그린 그림이에요. 서양 점성술은 이 그림으로 사람을 읽어요. 별명은 생년월일과 태어난 시각, 태어난 곳으로 내 출생 차트를 계산해요.</p></div>
+          <div class="faq-item"><h3>태어난 시각을 모르면 볼 수 없나요?</h3><p>볼 수 있어요. 시각을 &#x27;모름&#x27;으로 고르면 태어난 곳도 묻지 않고, 시각이 있어야 계산되는 상승궁과 하우스만 빼고 해와 달, 행성의 별자리로 풀어 드려요.</p></div>
+          <div class="faq-item"><h3>사주와는 뭐가 달라요?</h3><p>사주는 태어난 해 · 달 · 날 · 시를 동양의 음양오행으로 읽고, 서양 점성술은 태어난 순간 하늘에 있던 해와 달, 행성의 자리를 읽어요. 별명은 서양 점성술의 출생 차트로 풀어요.</p></div>
+          <div class="faq-item"><h3>점성술을 하나도 몰라도 읽을 수 있나요?</h3><p>네. 풀이 본문에는 하우스나 각도 같은 용어를 쓰지 않아요. 어느 별, 어느 자리에서 나온 말인지는 문단 머리에 작게 적어 두어서 궁금할 때만 보면 돼요.</p></div>
+          <div class="faq-item"><h3>별자리 궁합 점수는 어떻게 나와요?</h3><p>두 사람의 출생 차트를 겹쳐, 상대의 행성이 내 해 · 달 · 수성 · 금성 · 화성과 만드는 각도로 계산해요. 연애 · 친구 · 일 · 가족마다 보는 무게가 달라 사이마다 점수가 다르고, 나를 기준으로 40점에서 100점 사이로 나와요.</p></div>
+          <div class="faq-item"><h3>새턴 리턴(토성 회귀)도 볼 수 있나요?</h3><p>네. 토성이 태어날 때의 자리로 돌아오는 만 29~30세 무렵(토성 귀환)이 두 번째 변곡점이에요. 내 차트로 계산한 해와 함께, 같은 나이라도 사람마다 다르게 오는 변화 · 기회 · 만남의 시기를 보여 드려요.</p></div>
+          <div class="faq-item"><h3>무료예요?</h3><p>지금은 요약 풀이부터 심층 리포트, 별자리 궁합까지 모두 무료이고 횟수 제한도 없어요.</p></div>
+          <div class="faq-item"><h3>내 출생 정보는 어디에 저장돼요?</h3><p>내 출생 정보는 내 계정에만 저장되고, 궁합을 볼 때 넣은 상대의 출생 정보는 저장하지 않아요. 공유 카드에도 출생 정보는 들어가지 않아요.</p></div>
+      </div>
+    </div>
   </section>
 
   <!-- 마지막 권유 (브랜드 자리: 로고) -->
