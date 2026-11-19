@@ -278,6 +278,29 @@ h3 { font-size: 18px; line-height: 26px; font-weight: var(--w-semibold); letter-
 .bottom p { font-size: 13px; color: var(--hint); }
 .bottom nav { display: flex; gap: 20px; font-size: 13px; color: var(--gray); }
 
+.bottom nav { flex-wrap: wrap; }
+.bottom nav a:hover { color: var(--ink); }
+.bottom nav .strong { color: var(--ink); font-weight: var(--w-semibold); }
+
+/* 약관 · 처리방침: 읽기 폭 760, 장식 없이 평평한 글 */
+.legal { padding-block: 40px 112px; }
+.legal .wrap { max-width: calc(760px + 40px); }
+.legal h1 { font-size: clamp(28px, 3.4vw, 36px); line-height: 1.3; letter-spacing: -0.02em; }
+.legal-intro { margin-top: 24px; font-size: 16px; line-height: 1.75; color: var(--gray); }
+.legal section { margin-top: 44px; display: grid; gap: 14px; }
+.legal h2 { font-size: 19px; line-height: 28px; font-weight: var(--w-semibold); letter-spacing: -0.01em; }
+.legal p, .legal li { font-size: 15px; line-height: 1.75; color: var(--gray); }
+.legal ul, .legal ol { display: grid; gap: 6px; padding-left: 1.3em; }
+.legal ul { list-style: disc; }
+.legal ol { list-style: decimal; }
+.legal li::marker { color: var(--hint); }
+.legal-table { overflow-x: auto; border: 1px solid var(--hair); border-radius: var(--radius); }
+.legal table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; line-height: 1.65; }
+.legal th { text-align: left; font-weight: var(--w-semibold); color: var(--ink); background: var(--fill); padding: 12px 14px; }
+.legal td { padding: 12px 14px; color: var(--gray); border-top: 1px solid var(--hair); vertical-align: top; }
+.legal td:first-child { color: var(--ink); min-width: 9em; }
+.legal-closing { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 14px; color: var(--hint); }
+
 /* 좁은 화면 */
 @media (max-width: 960px) {
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
