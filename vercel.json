@@ -1,4 +1,5 @@
 {
   "framework": "nuxtjs",
-  "buildCommand": "nuxt generate"
+  "buildCommand": "nuxt generate",
+  "redirects": [{ "source": "/marketing", "destination": "/marketing-terms", "permanent": true }]
 }

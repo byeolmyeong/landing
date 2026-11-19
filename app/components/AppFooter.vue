@@ -7,6 +7,7 @@
         <NuxtLink to="/terms">이용약관</NuxtLink>
         <!-- 개인정보 처리방침은 다른 링크보다 눈에 띄게 둔다 -->
         <NuxtLink to="/privacy" class="strong">개인정보 처리방침</NuxtLink>
+        <NuxtLink to="/marketing-terms">마케팅 정보 수신 동의</NuxtLink>
         <a href="mailto:support@byeolmyeong.com">문의 support@byeolmyeong.com</a>
       </nav>
     </div>
