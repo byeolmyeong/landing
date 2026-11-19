@@ -34,7 +34,6 @@ python3 -m http.server 8000   # http://localhost:8000
 - 구글 서치 콘솔 · 네이버 서치어드바이저에 `byeolmyeong.com` 을 등록하고 사이트맵을 제출한다(소유 확인은 Cloudflare DNS 의 TXT 레코드)
 
 ## 출시 전에 할 것
-- `index.html` 의 `<meta name="robots" content="noindex">` 지우기
 - "출시 준비 중" 표시(`btn-soon` · `is-soon` 인 `<span>` 두 곳: 히어로 · 마지막 권유)를 웹 앱 · 앱스토어 · 플레이스토어 링크(`<a>`)로 바꾸기
 - 바닥의 이용약관 · 개인정보처리방침 · 문의하기 링크 채우기
 - "지금은 모두 무료" 문구는 1.1.0(유료 기능) 때 고치기
