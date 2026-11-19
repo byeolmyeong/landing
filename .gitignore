@@ -1,2 +1,9 @@
+# Nuxt
+node_modules
+.nuxt
+.output
+.data
+dist
+# Vercel 연결 파일과 로컬 전용 토큰
 .vercel
 .env*
