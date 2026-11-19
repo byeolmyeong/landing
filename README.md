@@ -12,6 +12,12 @@
 - 빛 · 유리 · 별이는 브랜드 자리(히어로 · 홈 아이콘 · 공유 카드 · 마지막 로고)에만. 버튼 · 카드 · 글은 평평하게
 - 문구 규칙은 앱과 같다: 건강 · 투자 · 미래 사건을 단정하지 않는다. 궁합 점수 · 별명 문장 · 시기 연도는 화면에 "예시" 로 표시한 지어낸 값이다
 
+## 공유 이미지 (링크 미리보기)
+- `og.png`(1200×630)는 `og/og-image.html` 을 찍은 것이다. 카카오톡 · 메신저 · SNS 에 링크를 붙이면 나온다
+- 다시 찍기: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --virtual-time-budget=6000 --screenshot="$PWD/og.png" "file://$PWD/og/og-image.html"`
+- 카카오톡은 미리보기를 한동안 저장해 둔다. 바꾼 뒤에는 카카오 개발자 사이트의 공유 디버거(도구 → 공유 디버거)에서 주소를 넣고 캐시를 지운다
+- `og/` 와 README 는 배포에 넣지 않는다(`.vercelignore`)
+
 ## 로컬에서 보기
 ```
 python3 -m http.server 8000   # http://localhost:8000
