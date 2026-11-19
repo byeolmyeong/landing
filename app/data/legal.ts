@@ -6,8 +6,8 @@
  */
 
 export const legalInfo = {
-  /** 개인 운영. 보호책임자 칸에는 실명 대신 서비스 이름을 쓴다(개인정보 보호법 제30조: 성명 또는 담당 부서 명칭과 연락처) */
-  operator: '별명',
+  /** 개인 운영. 보호책임자 칸에는 실명 대신 담당 이름을 쓴다(개인정보 보호법 제30조: 성명 또는 담당 부서 명칭과 연락처) */
+  operator: '별명팀',
   contact: 'support@byeolmyeong.com',
   effective: '2026년 11월 19일',
 }
@@ -140,7 +140,7 @@ export const privacy: LegalDocument = {
     },
     {
       title: '제11조 (개인정보 보호책임자)',
-      blocks: [{ ul: [`성명: ${operator}`, `문의: ${contact} 또는 앱 내 문의`] }],
+      blocks: [{ ul: [`담당: ${operator}`, `문의: ${contact} 또는 앱 내 문의`] }],
     },
     {
       title: '제12조 (권익침해 구제방법)',
