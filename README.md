@@ -18,7 +18,9 @@ python3 -m http.server 8000   # http://localhost:8000
 ```
 
 ## 배포
-Cloudflare Pages 가 이 저장소의 `main` 을 그대로 올린다(빌드 명령 없음, 출력 디렉터리 `/`). `main` 에 합치면 몇 분 안에 바뀐다.
+- Vercel `swyp` 팀의 `byeolmyeong-landing` 프로젝트가 이 저장소의 `main` 을 그대로 올린다(빌드 명령 없음). `main` 에 푸시하면 1분 안에 https://byeolmyeong.com 이 바뀐다.
+- 브랜치는 `main` 하나만 쓴다(develop · 스테이징 없음).
+- 도메인: `byeolmyeong.com`(대표) · `www.byeolmyeong.com`(대표로 308 이동). DNS 는 Cloudflare 에 있다(CNAME → Vercel, 프록시 끔). 같은 도메인의 메일(`support@`) 레코드는 건드리지 않는다.
 
 ## 출시 전에 할 것
 - `index.html` 의 `<meta name="robots" content="noindex">` 지우기
