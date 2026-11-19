@@ -145,6 +145,11 @@ h3 { font-size: 18px; line-height: 26px; font-weight: var(--w-semibold); letter-
 .btn-line { background: var(--fill); color: var(--ink); }
 .btn-line:hover { background: var(--hair); }
 .btn-line small { font-size: 12px; font-weight: var(--w-medium); color: var(--gray); }
+/* 출시 전 표시: 앱의 "누를 수 없는 버튼" 처럼 선 색 바탕에 흐린 글씨 (DESIGN.md) */
+.btn-soon { background: var(--hair); color: var(--gray); cursor: default; }
+.btn-line.is-soon { color: var(--hint); cursor: default; }
+.btn-line.is-soon:hover { background: var(--fill); }
+.btn-line.is-soon small { color: var(--muted); }
 .btn:focus-visible, .dot:focus-visible, .nav a:focus-visible {
   outline: none; box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--primary);
 }
@@ -468,9 +473,10 @@ h3 { font-size: 18px; line-height: 26px; font-weight: var(--w-semibold); letter-
         <h1>별이 붙여 준<br>나의<svg class="mark" viewBox="0 0 212 112" role="img" aria-label="별명"><use href="#logo"/></svg></h1>
         <p class="lead">생년월일과 태어난 시각, 태어난 곳으로 그 순간의 하늘을 계산하고, 점성술 용어 없이 나를 설명하는 글로 풀어 드려요.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#start">웹에서 내 별명 받기</a>
-          <a class="btn btn-line" href="#start"><small>iPhone</small>App Store</a>
-          <a class="btn btn-line" href="#start"><small>Android</small>Google Play</a>
+          <!-- 출시 전: 누를 수 없는 표시. 출시하면 웹 앱 · 스토어 링크(<a>)로 바꾼다 -->
+          <span class="btn btn-soon">출시 준비 중이에요</span>
+          <span class="btn btn-line is-soon" aria-disabled="true"><small>iPhone</small>App Store</span>
+          <span class="btn btn-line is-soon" aria-disabled="true"><small>Android</small>Google Play</span>
         </div>
         <p class="fine">지금은 모두 무료 · 횟수 제한 없음 · 만 14세 이상</p>
       </div>
@@ -736,9 +742,10 @@ h3 { font-size: 18px; line-height: 26px; font-weight: var(--w-semibold); letter-
           <li><span>‘내 요약 보기’ 한 번</span></li>
         </ol>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#start">웹에서 내 별명 받기</a>
-          <a class="btn btn-line" href="#start"><small>iPhone</small>App Store</a>
-          <a class="btn btn-line" href="#start"><small>Android</small>Google Play</a>
+          <!-- 출시 전: 누를 수 없는 표시. 출시하면 웹 앱 · 스토어 링크(<a>)로 바꾼다 -->
+          <span class="btn btn-soon">출시 준비 중이에요</span>
+          <span class="btn btn-line is-soon" aria-disabled="true"><small>iPhone</small>App Store</span>
+          <span class="btn btn-line is-soon" aria-disabled="true"><small>Android</small>Google Play</span>
         </div>
       </div>
     </div>
