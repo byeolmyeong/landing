@@ -13,7 +13,7 @@ useSeoMeta({
   ogImage: `${site}/og.png`,
   ogImageWidth: 1200,
   ogImageHeight: 630,
-  ogImageAlt: '빛나는 별 캐릭터 별이와 별명 로고, 태어난 순간의 하늘로 읽는 나',
+  ogImageAlt: '빛나는 별 캐릭터 별이와 "점성술을 몰라도 읽히는 나의 별명" 문구, 별명 로고',
   twitterCard: 'summary_large_image',
   twitterImage: `${site}/og.png`,
 })
