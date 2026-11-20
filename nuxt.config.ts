@@ -23,6 +23,10 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://cdn.jsdelivr.net', crossorigin: '' },
         { rel: 'stylesheet', crossorigin: '', href: 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css' },
       ],
+      // 나타나는 움직임(app/plugins/reveal.ts): 그리기 전에 html 에 reveal-on 을 붙여 깜빡임 없이 숨겨 두고, 3초 안에 플러그인이 돌지 못하면 모두 보이게 한다
+      script: [
+        { innerHTML: "(function(d){d.classList.add('reveal-on');setTimeout(function(){if(!d.classList.contains('reveal-ready'))d.classList.add('reveal-all')},3000)})(document.documentElement)" },
+      ],
     },
   },
   nitro: {
