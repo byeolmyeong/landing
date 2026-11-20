@@ -141,7 +141,8 @@ img { display: block; max-width: 100%; }
 .trust { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 18px; font-size: 14px; color: var(--hint); }
 .hero-art { position: relative; height: 680px; }
 .hero-art .phone { position: absolute; }
-.hero-art .p1 { left: 10px; top: 70px; width: 270px; opacity: .9; }
+/* 뒤 폰만 -10° 기울인다(소유자 2026-11-20 비교 시안 C). 휴대폰 폭에서는 뒤 폰을 숨긴다 */
+.hero-art .p1 { left: 10px; top: 70px; width: 270px; opacity: .9; rotate: -10deg; }
 .hero-art .p2 { right: 20px; top: 0; width: 300px; }
 
 /* Why */
