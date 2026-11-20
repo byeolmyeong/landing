@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- 스토어 등록 이미지 원본(소유자 2026-11-20 "sou.zip 처럼"). 배포에는 넣지 않는다(.vercelignore).
+     ?s=ios|play&n=1..8 은 미리보기 칸 스크린샷, ?s=feature 는 플레이 대표 그래픽. 찍는 법은 README "스토어 등록 이미지".
+     폰 모양 값은 랜딩 app/assets/css/main.css 의 .iphone 과 같다(고치면 둘 다) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<style>
+  :root { --ink: #F2F3F7; --gray: #A9ABB7; --accent: #8F99FF; --lilac: #9AA3FF; }
+  html, body { margin: 0; overflow: hidden; }
+  body { position: relative; width: var(--w); height: var(--h); font-family: "Pretendard", "Apple SD Gothic Neo", sans-serif; color: var(--ink); word-break: keep-all;
+    background: radial-gradient(120% 70% at 50% 0%, #161A3A 0%, #0D0F1C 45%, #0A0B12 100%); }
+  #sky { position: absolute; inset: 0; }
+  .glow { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(71, 82, 255, .45) 0%, rgba(71, 82, 255, 0) 70%); pointer-events: none; }
+  .cap { position: absolute; left: 6%; right: 6%; text-align: center; }
+  .cap h1 { margin: 0; font-weight: 600; letter-spacing: -0.03em; }
+  .cap h1 em { font-style: normal; color: var(--accent); }
+
+  /* 실제 아이폰 모양 — 랜딩 .iphone 과 같은 값 */
+  .iphone { container-type: inline-size; position: absolute; }
+  .ip-frame { position: relative; z-index: 1; padding: 3.4cqw; border: .9cqw solid transparent; border-radius: 14cqw;
+    background: linear-gradient(#050608, #050608) padding-box, linear-gradient(145deg, #F1F3F7, #9AA0AB 38%, #E4E7EC 62%, #7D838E) border-box;
+    box-shadow: 0 6cqw 14cqw rgba(0, 0, 0, .6); }
+  .ip-frame .scr { position: relative; border-radius: 9.7cqw; overflow: hidden; background: #0D0E12; aspect-ratio: 390 / 844; }
+  .ip-frame .scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .ip-notch { position: absolute; z-index: 2; top: 3.4cqw; left: 50%; transform: translateX(-50%); width: 33cqw; height: 6.4cqw; border-radius: 0 0 4cqw 4cqw; background: #050608; }
+  .ip-home { position: absolute; z-index: 2; bottom: 5.2cqw; left: 50%; transform: translateX(-50%); width: 32cqw; height: 1.3cqw; border-radius: 1cqw; background: rgba(242, 243, 247, .9); }
+  .ip-btn { position: absolute; z-index: 0; width: 1cqw; border-radius: .6cqw; background: linear-gradient(90deg, #7D838E, #E4E7EC 50%, #9AA0AB); }
+  .ip-silent { left: -.6cqw; top: 38cqw; height: 7cqw; } .ip-vol1 { left: -.6cqw; top: 54cqw; height: 13cqw; }
+  .ip-vol2 { left: -.6cqw; top: 70cqw; height: 13cqw; } .ip-power { right: -.6cqw; top: 60cqw; height: 20cqw; }
+
+  /* 첫 장(브랜드) */
+  .brand { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .pill { border: .25em solid var(--lilac); color: var(--lilac); border-radius: 999px; font-weight: 600; letter-spacing: -0.01em; }
+  .word { font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+  .sub { color: var(--gray); font-weight: 500; }
+  .feature-copy { position: absolute; display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div id="root"></div>
+<script>
+const q = new URLSearchParams(location.search)
+const kind = q.get('s') || 'ios'
+const n = +(q.get('n') || 1)
+const SIZE = { ios: [1290, 2796], play: [1080, 1920], feature: [1024, 500] }[kind]
+const [W, H] = SIZE
+document.body.style.setProperty('--w', W + 'px')
+document.body.style.setProperty('--h', H + 'px')
+const shot = src => `../public/screens/${src}.png`
+// 위 두 줄(핵심 낱말은 em) · 폰 화면. 문구는 랜딩 주요 기능과 같은 말
+// 1 장은 브랜드, 2~8 장은 아래 차례대로
+const SLIDES = [
+  { t: '태어난 순간의 하늘이<br>지어 준 <em>나의 별명</em>', img: shot('reveal') },
+  { t: '<em>매일</em> 다시 열어 보는<br>나의 하늘', img: shot('home') },
+  { t: '<em>오늘의 하늘</em>로<br>하루를 가볍게 시작해요', img: shot('today-sky') },
+  { t: '나를 <em>다섯 가지</em>로<br>더 자세히 읽어요', img: shot('me-personality') },
+  { t: '<em>이번 달 · 올해 · 인생</em>의<br>흐름을 한눈에', img: shot('timing-year') },
+  { t: '태어난 순간의 하늘을<br><em>한 장의 지도</em>로', img: shot('sky-map') },
+  { t: '<em>별명 카드</em>로<br>스토리에 바로 공유해요', img: 'screens/share-sheet.png' },
+]
+const phone = (src, css) => `<div class="iphone" style="${css}"><span class="ip-btn ip-silent"></span><span class="ip-btn ip-vol1"></span><span class="ip-btn ip-vol2"></span><span class="ip-btn ip-power"></span><div class="ip-frame"><div class="scr"><img src="${src}"></div><span class="ip-notch"></span><span class="ip-home"></span></div></div>`
+const root = document.getElementById('root')
+
+// 별 점: 같은 씨앗이라 다시 찍어도 같은 하늘
+const sky = document.getElementById('sky'); sky.width = W; sky.height = H
+const ctx = sky.getContext('2d'); let seed = 11 + n * 7
+const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647
+for (let i = 0; i < Math.round(W * H / 9000); i++) {
+  ctx.beginPath(); ctx.arc(rnd() * W, rnd() * H, (0.6 + rnd() * 1.6) * W / 1290, 0, Math.PI * 2)
+  ctx.fillStyle = `rgba(220,226,245,${0.15 + rnd() * 0.5})`; ctx.fill()
+}
+
+if (kind === 'feature') {
+  // 플레이 대표 그래픽 b: 왼쪽 글 + 오른쪽 폰 둘
+  root.innerHTML = `<div class="glow" style="width:780px;height:780px;left:430px;top:-170px"></div>
+  <div class="feature-copy" style="left:72px;top:0;bottom:0;width:470px;justify-content:center">
+    <span style="font-size:20px;font-weight:600;color:#9AA3FF">별이 지어 준 이름</span>
+    <div style="margin-top:12px;font-size:50px;line-height:64px;font-weight:600;letter-spacing:-0.03em">점성술을 몰라도<br>읽히는 나의 별명</div>
+    <span style="margin-top:26px;display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:600;color:#C8CAD3"><img src="../public/brand/byeoli.svg" style="width:30px;height:30px">별명</span>
+  </div>
+  ${phone(shot('reveal'), 'left:596px;top:84px;width:196px;opacity:.92')}
+  ${phone(shot('home'), 'left:770px;top:34px;width:208px')}`
+} else if (n === 1) {
+  // 첫 장: 꼬리표 · 큰 이름 · 별이 (sou.zip 첫 장처럼)
+  const s = W / 1290
+  root.innerHTML = `<div class="glow" style="width:${1500 * s}px;height:${1500 * s}px;left:${-105 * s}px;top:${H * .38}px"></div>
+  <div class="brand" style="top:${H * .14}px">
+    <span class="pill" style="font-size:${52 * s}px;padding:${18 * s}px ${44 * s}px">태어난 순간의 하늘로 읽는 나</span>
+    <span class="word" style="margin-top:${70 * s}px;font-size:${300 * s}px">별명</span>
+    <span class="sub" style="margin-top:${56 * s}px;font-size:${54 * s}px;line-height:1.4">점성술을 몰라도 읽히는<br>나의 별명</span>
+  </div>
+  <img src="../public/brand/byeoli.svg" alt="" style="position:absolute;left:50%;transform:translateX(-50%);top:${H * .52}px;width:${880 * s}px;height:${880 * s}px">`
+} else {
+  // 미리보기: 위 두 줄 + 가운데 폰(통째로)
+  const sl = SLIDES[n - 2]
+  const ios = kind === 'ios'
+  const font = ios ? 96 : 74, lh = ios ? 136 : 104, top = ios ? 280 : 170
+  const pw = ios ? 860 : 560, ptop = ios ? 760 : 520
+  root.innerHTML = `<div class="glow" style="width:${W * 1.1}px;height:${W * 1.1}px;left:${-W * .05}px;top:${ptop + pw * .4}px;opacity:.7"></div>
+  <div class="cap" style="top:${top}px"><h1 style="font-size:${font}px;line-height:${lh}px">${sl.t}</h1></div>
+  ${phone(sl.img, `left:${(W - pw) / 2}px;top:${ptop}px;width:${pw}px`)}`
+}
+</script>
+</body>
+</html>
