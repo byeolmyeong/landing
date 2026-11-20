@@ -81,12 +81,13 @@ img { display: block; max-width: 100%; }
   outline: none; box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--primary);
 }
 
-/* 시작 버튼 + 스토어 배지(출시 전엔 흐리게) */
-.launch { display: flex; flex-direction: column; align-items: flex-start; }
-.launch .acts { display: flex; gap: 12px; flex-wrap: wrap; }
+/* 시작 버튼 + 스토어 배지(출시 전엔 흐리게) + 안내 한 줄.
+   데스크톱 · 휴대폰은 한 덩어리(주 버튼을 배지 둘 폭에 맞춤), 태블릿(640~1023)은 같은 높이로 한 줄 — 소유자 2026-11-20 비교 시안에서 고름 */
+.launch { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .launch.center { align-items: center; }
-.stores-w { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: inherit; }
-.stores { display: flex; gap: 10px; }
+.lb { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 380px; }
+.lb .btn { grid-column: 1 / -1; }
+.lb .store-b { justify-content: center; padding: 0 10px; }
 .store-b {
   height: 52px; padding: 0 18px 0 14px; border-radius: 12px; background: #000; border: 1px solid #3A3B42;
   display: inline-flex; align-items: center; gap: 10px; color: var(--ink);
@@ -95,7 +96,7 @@ img { display: block; max-width: 100%; }
 .store { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
 .store small { font-size: 10px; color: #C8CAD3; font-weight: var(--w-medium); letter-spacing: .01em; }
 .store b { font-size: 17px; font-weight: var(--w-semibold); letter-spacing: -0.01em; }
-.stores-cap { font-size: 13px; line-height: 18px; color: var(--hint); }
+.stores-cap { font-size: 13px; line-height: 18px; color: var(--hint); text-wrap: balance; }
 
 /* 폰 틀: 디딧과 같은 얇은 테두리(9) · 가운데 둥근 섬 · 화면 모서리 42.
    테두리는 비치지 않게 칠한다 — 첫 화면에서 폰 둘이 겹칠 때 뒤 폰이 앞 폰 테두리로 비쳐 보이지 않게(소유자 2026-11-20).
@@ -307,6 +308,10 @@ img { display: block; max-width: 100%; }
   .hero h1 { font-size: 46px; line-height: 60px; }
   .hero .lead br { display: none; }
   .hero .launch { align-items: center; }
+  .lb { display: flex; width: auto; max-width: none; justify-content: center; }
+  .lb .btn, .lb .store-b { height: 52px; }
+  .lb .btn { padding: 0 20px; }
+  .lb .store-b { padding: 0 18px 0 14px; }
   .trust { justify-content: center; }
   .hero-art { height: 560px; max-width: 520px; margin: 0 auto; width: 100%; }
   .hero-art .p1 { left: 20px; top: 60px; width: 230px; }
@@ -334,11 +339,9 @@ img { display: block; max-width: 100%; }
   .hero h1 { font-size: 34px; line-height: 46px; }
   .hero .lead { font-size: 16px; line-height: 26px; }
   .launch, .launch.center, .hero .launch { align-items: stretch; width: 100%; }
-  .launch .acts { flex-direction: column; }
-  .launch .acts .btn { width: 100%; }
-  .hero .stores-w { margin-top: 12px; }
-  .stores { width: 100%; }
-  .stores .store-b { flex: 1; justify-content: center; padding: 0 10px; }
+  .lb { display: grid; width: 100%; max-width: none; }
+  .lb .btn { height: 56px; padding: 0 20px; }
+  .lb .store-b { padding: 0 10px; }
   .stores-cap { text-align: center; }
   .store b { font-size: 15px; }
   .hero-art { height: 440px; }
