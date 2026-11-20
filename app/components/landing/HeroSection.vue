@@ -11,8 +11,8 @@
         <p v-reveal="320" class="trust"><span>1.0.0 은 모두 무료</span><span aria-hidden="true">·</span><span>출생 정보는 내 계정에만</span></p>
       </div>
       <div class="hero-art">
-        <PhoneFrame class="p1" src="/screens/reveal.png" alt="별명 공개 화면: 새벽별 님의 별명은 자유로운 상상력과 단단한 책임감을 함께 지닌, 따뜻하고 독창적인 사람" priority />
-        <PhoneFrame class="p2" src="/screens/home.png" alt="홈 화면: 내 별명 카드, 오늘의 하늘, 지금 나의 시기, 이 시기의 작은 실천" priority />
+        <PhoneFrame class="p1" src="/screens/reveal.webp" alt="별명 공개 화면: 새벽별 님의 별명은 자유로운 상상력과 단단한 책임감을 함께 지닌, 따뜻하고 독창적인 사람" priority />
+        <PhoneFrame class="p2" src="/screens/home.webp" alt="홈 화면: 내 별명 카드, 오늘의 하늘, 지금 나의 시기, 이 시기의 작은 실천" priority />
       </div>
     </div>
   </section>

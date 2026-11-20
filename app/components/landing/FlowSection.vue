@@ -3,10 +3,10 @@
 <script setup lang="ts">
 const STEP_MS = 2000
 const steps = [
-  { t: '출생 정보 알려 주기', d: '생년월일 · 태어난 시각 · 태어난 곳. 시각을 몰라도 괜찮아요.', img: '/screens/birth.png', alt: '출생 정보 화면: 생년월일, 태어난 시각(모름), 태어난 곳' },
-  { t: '나의 별명 받기', d: '별이 하늘을 읽고 나에게 맞는 별명을 지어 줘요.', img: '/screens/reveal.png', alt: '별명 공개 화면' },
-  { t: '매일 오늘의 하늘', d: '오늘 하늘이 나에게 어떤 날인지, 작은 실천과 함께.', img: '/screens/today-sky.png', alt: '오늘의 하늘 화면: 사람 · 일 · 마음의 흐름과 이렇게 풀이한 이유' },
-  { t: '나 · 시기 더 알아보기', d: '성격 · 연애 · 관계 · 일 · 감정, 그리고 이번 달 · 올해 · 인생.', img: '/screens/me-personality.png', alt: '나 탭 화면: 성격 · 연애 · 관계 · 일 · 감정 칩' },
+  { t: '출생 정보 알려 주기', d: '생년월일 · 태어난 시각 · 태어난 곳. 시각을 몰라도 괜찮아요.', img: '/screens/birth.webp', alt: '출생 정보 화면: 생년월일, 태어난 시각(모름), 태어난 곳' },
+  { t: '나의 별명 받기', d: '별이 하늘을 읽고 나에게 맞는 별명을 지어 줘요.', img: '/screens/reveal.webp', alt: '별명 공개 화면' },
+  { t: '매일 오늘의 하늘', d: '오늘 하늘이 나에게 어떤 날인지, 작은 실천과 함께.', img: '/screens/today-sky.webp', alt: '오늘의 하늘 화면: 사람 · 일 · 마음의 흐름과 이렇게 풀이한 이유' },
+  { t: '나 · 시기 더 알아보기', d: '성격 · 연애 · 관계 · 일 · 감정, 그리고 이번 달 · 올해 · 인생.', img: '/screens/me-personality.webp', alt: '나 탭 화면: 성격 · 연애 · 관계 · 일 · 감정 칩' },
 ]
 
 const at = ref(0)
@@ -62,6 +62,8 @@ onBeforeUnmount(() => {
               v-for="(s, i) in steps"
               :key="s.img"
               :src="s.img"
+              :srcset="screenSrcset(s.img)"
+              sizes="(max-width: 639px) 230px, (max-width: 1023px) 260px, 320px"
               :alt="i === at ? s.alt : ''"
               :aria-hidden="i === at ? undefined : 'true'"
               :class="{ on: i === at }"
