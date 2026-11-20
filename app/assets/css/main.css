@@ -97,10 +97,12 @@ img { display: block; max-width: 100%; }
 .store b { font-size: 17px; font-weight: var(--w-semibold); letter-spacing: -0.01em; }
 .stores-cap { font-size: 13px; line-height: 18px; color: var(--hint); }
 
-/* 폰 틀: 디딧과 같은 얇은 유리 테두리(9) · 가운데 둥근 섬 · 화면 모서리 42 */
+/* 폰 틀: 디딧과 같은 얇은 테두리(9) · 가운데 둥근 섬 · 화면 모서리 42.
+   테두리는 비치지 않게 칠한다 — 첫 화면에서 폰 둘이 겹칠 때 뒤 폰이 앞 폰 테두리로 비쳐 보이지 않게(소유자 2026-11-20).
+   색은 흰 13% → 3% 를 바탕(#0D0E12) 위에 얹은 값과 같다 */
 .phone {
   position: relative; padding: 9px; border-radius: 50px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .03));
+  background: linear-gradient(145deg, #2C2D31, #141519);
   box-shadow: 0 40px 80px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .12);
 }
 .phone .isl { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); width: 90px; height: 22px; background: #0b0f14; border-radius: 999px; z-index: 2; }
@@ -208,8 +210,13 @@ img { display: block; max-width: 100%; }
 .faq-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; }
 .faq-i { border-top: 1px solid var(--hair); padding-block: 22px; }
 .faq-q { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 16px; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; font-size: 18px; line-height: 22px; font-weight: var(--w-semibold); border-radius: 6px; }
-.faq-q svg { flex: none; }
-.faq-a { margin-top: 12px; font-size: 16px; line-height: 27px; color: var(--gray); }
+.faq-q svg { flex: none; transition: transform .28s ease; }
+.faq-i.open .faq-q svg { transform: rotate(180deg); }
+/* 펼치고 접기: 높이(0fr ↔ 1fr)와 투명도를 함께 바꾼다. 접힌 답은 HTML 에는 남기고(검색) 화면 읽기에서는 숨긴다(visibility) */
+.faq-a { display: grid; grid-template-rows: 0fr; opacity: 0; visibility: hidden; transition: grid-template-rows .28s ease, opacity .2s ease, visibility 0s linear .28s; }
+.faq-i.open .faq-a { grid-template-rows: 1fr; opacity: 1; visibility: visible; transition: grid-template-rows .28s ease, opacity .28s ease .06s, visibility 0s; }
+.faq-a > p { overflow: hidden; min-height: 0; }
+.faq-a > p > span { display: block; padding-top: 12px; font-size: 16px; line-height: 27px; color: var(--gray); }
 
 /* 다운로드 */
 .cta-band { padding-block: 24px 96px; }
@@ -274,6 +281,23 @@ img { display: block; max-width: 100%; }
 .lg-tocbox[open] summary svg { transform: rotate(180deg); }
 .lg-tocbox nav { display: flex; flex-direction: column; gap: 2px; padding: 0 8px 10px; }
 .lg-tab:focus-visible, .lg-toc a:focus-visible, .lg-tocbox summary:focus-visible, .lg-tocbox nav a:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--primary); }
+
+/* 나타나는 움직임(v-reveal · app/plugins/reveal.ts): 아래에서 24 떠오르며 나타남. --d 만큼 늦게. 동작 줄이기면 하지 않는다 */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-on .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms), transform .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms); }
+  .reveal-on .reveal.is-in, .reveal-all .reveal { opacity: 1; transform: none; }
+  /* 첫 화면 폰: 조금 더 크게 떠오르고, 다 나타난 뒤에는 천천히 떠 있는다(translate 라 위치용 transform 과 겹치지 않는다) */
+  .reveal-on .hero-art.reveal { transform: translateY(48px); transition-duration: 1s; }
+  .reveal-on .hero-art.reveal.is-in, .reveal-all .hero-art.reveal { transform: none; }
+  .hero-art .p1 { animation: float 7s ease-in-out 1.2s infinite alternate; }
+  .hero-art .p2 { animation: float 6s ease-in-out 1.6s infinite alternate-reverse; }
+  @keyframes float { from { translate: 0 0; } to { translate: 0 -10px; } }
+  /* 기능 카드: 카드가 나타난 뒤 안의 작은 폰이 아래에서 올라온다. 마우스를 올리면 살짝 들린다 */
+  .reveal-on .feat.reveal .mini { transform: translateY(40px); transition: transform .8s cubic-bezier(.2, .7, .2, 1) calc(var(--d, 0ms) + 150ms), translate .3s ease; }
+  .reveal-on .feat.reveal.is-in .mini, .reveal-all .feat.reveal .mini { transform: none; }
+  .feat .mini { transition: translate .3s ease; }
+  .feat:hover .mini { translate: 0 -8px; }
+}
 
 /* 1024 아래: 한 단 · 가운데 정렬 · 위 메뉴 숨김 · 기능 카드 2열 · 이렇게 써요는 폰 아래 지금 단계 */
 @media (max-width: 1023px) {
@@ -344,6 +368,6 @@ img { display: block; max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn, .step, .step-t, .step-d, .dot, .dot::before, .flow-phone .scr img, .lg-tocbox summary svg { transition: none; }
+  .btn, .step, .step-t, .step-d, .dot, .dot::before, .flow-phone .scr img, .lg-tocbox summary svg, .faq-q svg, .faq-a, .faq-i.open .faq-a { transition: none; }
   .step.on .step-track span { animation: none; height: 100%; }
 }

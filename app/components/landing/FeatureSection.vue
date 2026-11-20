@@ -13,13 +13,13 @@ const features = [
 <template>
   <section id="features" class="sec deep features" aria-labelledby="features-title">
     <div class="wrap">
-      <div class="sec-head">
+      <div v-reveal class="sec-head">
         <span class="eyebrow">Features</span>
         <h2 id="features-title" class="h2">주요 기능</h2>
         <p class="lead">나를 읽는 글부터 매일의 하늘까지, 한 앱에서.</p>
       </div>
       <div class="feats">
-        <article v-for="f in features" :key="f.k" class="card feat">
+        <article v-for="(f, i) in features" :key="f.k" v-reveal="(i % 3) * 90" class="card feat">
           <div class="feat-txt">
             <span class="eyebrow">{{ f.k }}</span>
             <h3>{{ f.t }}</h3>

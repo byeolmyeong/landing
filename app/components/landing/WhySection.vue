@@ -10,13 +10,13 @@ const reasons = [
 <template>
   <section class="sec deep why" aria-labelledby="why-title">
     <div class="wrap two">
-      <div>
+      <div v-reveal>
         <span class="eyebrow">Why 별명</span>
         <h2 id="why-title" class="h2">점성술,<br>이래서 어려웠죠</h2>
         <p class="lead">별명은 출생 차트를 서버가 계산하고, 그 결과를 용어 없이 나를 설명하는 글로 바꿔요.</p>
       </div>
       <ol class="why-list">
-        <li v-for="(r, i) in reasons" :key="r.t" class="card why-card">
+        <li v-for="(r, i) in reasons" :key="r.t" v-reveal="120 + i * 100" class="card why-card">
           <span class="why-n" aria-hidden="true">{{ i + 1 }}</span>
           <div>
             <h3>{{ r.t }}</h3>

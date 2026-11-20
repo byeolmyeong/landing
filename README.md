@@ -9,6 +9,7 @@
 - `app/components/` — `AppHeader` · `AppFooter` · `PhoneFrame`(폰 틀) · `LaunchButtons`(웹에서 체험하기 + 스토어 배지) · `LegalDoc`(약관 한 편)
 - `app/data/faq.ts` — 자주 묻는 질문. 화면과 FAQPage JSON-LD 가 여기서 나온다
 - `app/data/links.ts` — 밖으로 나가는 주소(웹 앱. 스토어 링크는 출시 때 여기에)
+- `app/plugins/reveal.ts` — `v-reveal`: 화면에 들어올 때 아래에서 떠오르며 나타난다(`v-reveal="120"` 은 120ms 늦게). 동작 줄이기면 움직이지 않고, 스크립트가 없으면 모두 보인다
 - `app/assets/css/main.css` — 스타일 전부(`:root` 의 값은 앱 theme.ts 와 같다)
 - `public/` — 그대로 올라가는 파일(파비콘 · 앱 아이콘 · 공유 이미지 · robots.txt · sitemap.xml · `brand/byeoli.svg`(별이) · `screens/`(앱 화면 그림))
 - `nuxt.config.ts` — 사이트 전체의 `<head>`(언어 · 파비콘 · 글꼴 · 네이버 소유 확인 · og 공통값)

@@ -49,13 +49,13 @@ onBeforeUnmount(() => {
 <template>
   <section id="flow" ref="root" class="sec" aria-labelledby="flow-title" :style="{ '--step-ms': `${STEP_MS}ms` }">
     <div class="wrap">
-      <div class="sec-head">
+      <div v-reveal class="sec-head">
         <span class="eyebrow">How it works</span>
         <h2 id="flow-title" class="h2">이렇게 써요</h2>
         <p class="lead">출생 정보만 알려 주면, 나머지는 별이 해요.</p>
       </div>
       <div class="flow-grid">
-        <div class="flow-phone">
+        <div v-reveal="100" class="flow-phone">
           <div class="glow" aria-hidden="true" />
           <PhoneFrame>
             <img
@@ -88,7 +88,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </div>
-        <ol class="steps">
+        <ol v-reveal="220" class="steps">
           <li v-for="(s, i) in steps" :key="s.t">
             <button
               type="button"

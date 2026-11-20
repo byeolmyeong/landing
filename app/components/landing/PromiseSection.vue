@@ -10,7 +10,7 @@ const promises = [
 <template>
   <div class="deep promise-band">
     <div class="wrap">
-      <ul class="promise" aria-label="별명의 약속">
+      <ul v-reveal class="promise" aria-label="별명의 약속">
         <li v-for="p in promises" :key="p.t"><b>{{ p.t }}</b><span>{{ p.d }}</span></li>
       </ul>
     </div>
