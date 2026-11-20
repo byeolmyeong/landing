@@ -1,15 +1,15 @@
+<!-- 바닥: 로고 · 약관 넷 · ©. 문의 메일은 적지 않는다(문의는 앱 안에서 — 앱 결정 024 · 058) -->
 <template>
   <footer class="bottom">
     <div class="wrap">
-      <svg class="logo" viewBox="0 0 212 112" role="img" aria-label="별명"><use href="#logo" /></svg>
-      <p>오락과 자기 성찰을 위한 내용입니다. © 2026 별명</p>
-      <nav aria-label="약관과 문의">
+      <NuxtLink to="/" class="logo" aria-label="별명 처음으로"><img src="/brand/byeoli.svg" alt="" width="24" height="24">별명</NuxtLink>
+      <nav aria-label="약관과 정책">
         <NuxtLink to="/terms">이용약관</NuxtLink>
-        <!-- 개인정보 처리방침은 다른 링크보다 눈에 띄게 둔다 -->
         <NuxtLink to="/privacy" class="strong">개인정보 처리방침</NuxtLink>
         <NuxtLink to="/marketing-terms">마케팅 정보 수신 동의</NuxtLink>
-        <a href="mailto:support@byeolmyeong.com">문의 support@byeolmyeong.com</a>
+        <NuxtLink to="/privacy-consent">개인정보 수집 · 이용 동의</NuxtLink>
       </nav>
+      <span>© 2026 별명</span>
     </div>
   </footer>
 </template>
