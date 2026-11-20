@@ -235,8 +235,6 @@ img { display: block; max-width: 100%; }
 .bottom nav { display: flex; gap: 24px; }
 .bottom nav a { white-space: nowrap; }
 .bottom nav a:hover { color: var(--ink); }
-/* 개인정보 처리방침은 다른 링크보다 눈에 띄게 둔다(개인정보 보호법 — 처리방침은 구별되게 표시) */
-.bottom nav .strong { color: var(--gray); font-weight: var(--w-semibold); }
 
 /* 없는 주소 · 오류(app/error.vue): 머리 · 바닥 없이 화면 한가운데에 별이 · 한 줄 · 첫 화면으로 */
 .nf { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-block: 48px; }
