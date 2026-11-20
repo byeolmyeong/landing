@@ -296,12 +296,6 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: no-preference) {
   .reveal-on .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms), transform .7s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms); }
   .reveal-on .reveal.is-in, .reveal-all .reveal { opacity: 1; transform: none; }
-  /* 첫 화면 폰: 조금 더 크게 떠오르고, 다 나타난 뒤에는 천천히 떠 있는다(translate 라 위치용 transform 과 겹치지 않는다) */
-  .reveal-on .hero-art.reveal { transform: translateY(48px); transition-duration: 1s; }
-  .reveal-on .hero-art.reveal.is-in, .reveal-all .hero-art.reveal { transform: none; }
-  .hero-art .p1 { animation: float 7s ease-in-out 1.2s infinite alternate; }
-  .hero-art .p2 { animation: float 6s ease-in-out 1.6s infinite alternate-reverse; }
-  @keyframes float { from { translate: 0 0; } to { translate: 0 -10px; } }
   /* 기능 카드: 카드가 나타난 뒤 안의 작은 폰이 아래에서 올라와 카드 바닥에 붙는다(마우스를 올려도 움직이지 않는다) */
   .reveal-on .feat.reveal .mini { transform: translateY(40px); transition: transform .8s cubic-bezier(.2, .7, .2, 1) calc(var(--d, 0ms) + 150ms); }
   .reveal-on .feat.reveal.is-in .mini, .reveal-all .feat.reveal .mini { transform: none; }
