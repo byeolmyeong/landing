@@ -19,7 +19,7 @@
 - 반응형 기준: 1024 이상 두 단 · 640~1023 한 단 가운데 정렬(위 메뉴 숨김 · 기능 카드 2열) · 640 아래 버튼 꽉 차게 · 기능 카드 1열 · 첫 화면 폰 하나
 - 색 · 글꼴 · 굵기: 앱 저장소 `src/constants/theme.ts` (결정 033). `app/assets/css/main.css` 의 `:root` 가 같은 값을 쓴다
 - 별이(`public/brand/byeoli.svg`): 앱 저장소 `assets/brand/` 의 별이와 같은 그림 (결정 035)
-- 화면 그림(`public/screens/*.png`): 캔버스의 앱 보드를 위에 상태 막대(9:41)를 얹어 2배(780×1688)로 찍은 것. 앱 시안이 바뀌면 다시 찍는다. 한 장 500KB 아래
+- 화면 그림: 캔버스의 앱 보드를 위에 상태 막대(9:41)를 얹어 2배(780×1688)로 찍은 PNG 가 원본(`store/screens/*.png`)이고, 랜딩은 그것을 WebP 로 바꾼 `public/screens/*.webp`(780 폭)와 `*-480.webp`(480 폭)를 쓴다(브라우저가 화면에 맞는 쪽을 고른다 — 성능). 앱 시안이 바뀌면 PNG 를 다시 찍고 WebP(품질 0.82)도 다시 만든다
 - 문구 규칙은 앱과 같다: 건강 · 투자 · 미래 사건을 단정하지 않는다. 궁합은 1.1.0 이라 메뉴 · 섹션 · 자주 묻는 질문 · 메타에 넣지 않는다(앱 결정 055)
 
 ## 공유 이미지 (링크 미리보기)
@@ -30,7 +30,7 @@
 
 ## 스토어 등록 이미지
 - `store/out/ios/01~08.png`(1290×2796, 앱스토어 아이폰 6.9형) · `store/out/play/01~08.png`(1080×1920, 플레이 휴대폰) · `store/out/play/feature.png`(1024×500, 플레이 대표 그래픽). 앱스토어 · 플레이스토어 앱 페이지의 "미리보기" 칸에 올린다. 아이패드는 앱이 지원하지 않아 없다
-- 원본은 `store/shot.html`(sou.zip 스토어 이미지처럼: 위 두 줄 제목 + 실제 아이폰 모양 + 별 하늘. 1 장은 브랜드). 폰 화면은 `public/screens/` 와 `store/screens/share-sheet.png`(캔버스 앱 보드를 2배로 찍은 것)
+- 원본은 `store/shot.html`(sou.zip 스토어 이미지처럼: 위 두 줄 제목 + 실제 아이폰 모양 + 별 하늘. 1 장은 브랜드). 폰 화면은 `store/screens/*.png`(캔버스 앱 보드를 2배로 찍은 것)
 - 다시 찍기: 저장소 맨 위에서 `python3 -m http.server 47817` 을 띄우고 `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1290,2796 --virtual-time-budget=6000 --screenshot="$PWD/store/out/ios/02.png" "http://127.0.0.1:47817/store/shot.html?s=ios&n=2"` (플레이는 `--window-size=1080,1920` · `s=play`, 대표 그래픽은 `--window-size=1024,500` · `s=feature`)
 - `store/` 는 배포에 넣지 않는다(`.vercelignore`)
 
