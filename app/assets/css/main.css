@@ -237,16 +237,15 @@ img { display: block; max-width: 100%; }
 /* 개인정보 처리방침은 다른 링크보다 눈에 띄게 둔다(개인정보 보호법 — 처리방침은 구별되게 표시) */
 .bottom nav .strong { color: var(--gray); font-weight: var(--w-semibold); }
 
-/* 없는 주소 · 오류(app/error.vue): 머리 · 바닥 사이 가운데에 별이 · 한 줄 · 첫 화면으로 */
-.nf { position: relative; overflow: hidden; padding-block: 120px 140px; }
-.nf .glow { width: 640px; height: 640px; left: 50%; top: -80px; transform: translateX(-50%); }
+/* 없는 주소 · 오류(app/error.vue): 머리 · 바닥 없이 화면 한가운데에 별이 · 한 줄 · 첫 화면으로 */
+.nf { position: relative; overflow: hidden; min-height: 100vh; min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-block: 48px; }
+.nf .glow { width: 640px; height: 640px; left: 50%; top: 50%; transform: translate(-50%, -58%); }
 .nf-in { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .nf-in img { width: 96px; height: 96px; margin-bottom: 24px; }
 .nf-in .h2 { margin-top: 10px; }
 .nf-in .lead { max-width: 30em; }
 .nf-in .btn { margin-top: 36px; min-width: 200px; }
 @media (max-width: 639px) {
-  .nf { padding-block: 72px 96px; }
   .nf-in .btn { width: 100%; }
 }
 
