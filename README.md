@@ -28,6 +28,12 @@
 - 카카오톡은 미리보기를 한동안 저장해 둔다. 바꾼 뒤에는 카카오 개발자 사이트의 공유 디버거(도구 → 공유 디버거)에서 주소를 넣고 캐시를 지운다
 - `og/` 와 README 는 배포에 넣지 않는다(`.vercelignore`)
 
+## 스토어 등록 이미지
+- `store/out/ios/01~08.png`(1290×2796, 앱스토어 아이폰 6.9형) · `store/out/play/01~08.png`(1080×1920, 플레이 휴대폰) · `store/out/play/feature.png`(1024×500, 플레이 대표 그래픽). 앱스토어 · 플레이스토어 앱 페이지의 "미리보기" 칸에 올린다. 아이패드는 앱이 지원하지 않아 없다
+- 원본은 `store/shot.html`(sou.zip 스토어 이미지처럼: 위 두 줄 제목 + 실제 아이폰 모양 + 별 하늘. 1 장은 브랜드). 폰 화면은 `public/screens/` 와 `store/screens/share-sheet.png`(캔버스 앱 보드를 2배로 찍은 것)
+- 다시 찍기: 저장소 맨 위에서 `python3 -m http.server 47817` 을 띄우고 `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1290,2796 --virtual-time-budget=6000 --screenshot="$PWD/store/out/ios/02.png" "http://127.0.0.1:47817/store/shot.html?s=ios&n=2"` (플레이는 `--window-size=1080,1920` · `s=play`, 대표 그래픽은 `--window-size=1024,500` · `s=feature`)
+- `store/` 는 배포에 넣지 않는다(`.vercelignore`)
+
 ## 로컬에서 보기
 ```
 npm install
