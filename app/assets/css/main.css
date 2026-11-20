@@ -14,6 +14,8 @@
   --muted: #4D4F5A;
   --primary: #4752FF;
   --primary-soft: #1D2050;
+  --panel: #111218;
+  --text: #C8CAD3;
   --lilac: #9AA3FF;
   --glow-mid: #4F5BFF;
   --font: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
@@ -196,7 +198,7 @@ img { display: block; max-width: 100%; }
 .feat h3 { margin-top: 8px; font-size: 22px; line-height: 30px; }
 .feat p { margin-top: 8px; font-size: 15px; line-height: 24px; color: var(--gray); }
 .promise-band { padding-bottom: 88px; }
-.promise { padding: 36px 48px; border-radius: 24px; background: #111218; border: 1px solid var(--fill); display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.promise { padding: 36px 48px; border-radius: 24px; background: var(--panel); border: 1px solid var(--fill); display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
 .promise li { display: flex; flex-direction: column; gap: 6px; }
 .promise b { font-size: 18px; line-height: 22px; font-weight: var(--w-semibold); }
 .promise span { font-size: 15px; line-height: 20px; color: var(--gray); }
@@ -227,24 +229,51 @@ img { display: block; max-width: 100%; }
 /* 개인정보 처리방침은 다른 링크보다 눈에 띄게 둔다(개인정보 보호법 — 처리방침은 구별되게 표시) */
 .bottom nav .strong { color: var(--gray); font-weight: var(--w-semibold); }
 
-/* 약관 · 처리방침: 읽기 폭 760, 장식 없이 평평한 글 */
-.legal { padding-block: 40px 112px; }
-.legal .wrap { max-width: calc(760px + 40px); }
-.legal h1 { font-size: clamp(28px, 3.4vw, 36px); line-height: 1.3; letter-spacing: -0.02em; }
-.legal-intro { margin-top: 24px; font-size: 16px; line-height: 1.75; color: var(--gray); }
-.legal section { margin-top: 44px; display: grid; gap: 14px; }
-.legal h2 { font-size: 19px; line-height: 28px; font-weight: var(--w-semibold); letter-spacing: -0.01em; }
-.legal p, .legal li { font-size: 15px; line-height: 1.75; color: var(--gray); }
-.legal ul, .legal ol { display: grid; gap: 6px; padding-left: 1.3em; }
-.legal ul { list-style: disc; }
-.legal ol { list-style: decimal; }
-.legal li::marker { color: var(--hint); }
-.legal-table { overflow-x: auto; border: 1px solid var(--hair); border-radius: var(--radius); }
-.legal table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; line-height: 1.65; }
-.legal th { text-align: left; font-weight: var(--w-semibold); color: var(--ink); background: var(--fill); padding: 12px 14px; }
-.legal td { padding: 12px 14px; color: var(--gray); border-top: 1px solid var(--hair); vertical-align: top; }
-.legal td:first-child { color: var(--ink); min-width: 9em; }
-.legal-closing { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--hair); font-size: 14px; color: var(--hint); }
+/* 약관 · 정책(캔버스 L2): 제목 + 시행일 → 문서 탭 넷 → 왼쪽 조항 목록 240 + 본문 740 */
+.lg-head { padding-top: 56px; }
+.lg-head h1 { font-size: 44px; line-height: 58px; letter-spacing: -0.03em; }
+.lg-date { margin-top: 12px; font-size: 15px; line-height: 22px; color: var(--hint); }
+.lg-tabs { margin-top: 32px; display: flex; gap: 8px; border-bottom: 1px solid var(--fill); padding-bottom: 20px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+.lg-tabs::-webkit-scrollbar { display: none; }
+.lg-tab { height: 40px; padding: 0 18px; border-radius: 20px; background: var(--panel); border: 1px solid var(--fill); color: var(--gray); font-size: 15px; font-weight: var(--w-medium); display: inline-flex; align-items: center; flex: none; }
+.lg-tab:hover:not(.on) { color: var(--ink); }
+.lg-tab.on { background: var(--ink); color: var(--paper); border-color: var(--ink); font-weight: var(--w-semibold); }
+.lg-grid { display: grid; grid-template-columns: 240px 1fr; gap: 72px; padding-top: 40px; padding-bottom: 96px; }
+.lg-toc-in { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
+.lg-toc-t { font-size: 13px; line-height: 18px; font-weight: var(--w-semibold); color: var(--hint); margin-bottom: 10px; letter-spacing: .02em; }
+.lg-toc a, .lg-tocbox nav a { padding: 8px 12px; border-radius: 10px; font-size: 14px; line-height: 20px; color: var(--hint); }
+.lg-toc a:hover, .lg-tocbox nav a:hover { color: var(--ink); }
+.lg-toc a.on, .lg-tocbox nav a.on { background: var(--raised); color: var(--ink); font-weight: var(--w-medium); }
+.lg-art { max-width: 740px; min-width: 0; }
+.lg-intro { padding: 24px 26px; border-radius: 16px; background: var(--panel); border: 1px solid var(--fill); font-size: 16px; line-height: 28px; color: var(--text); }
+.lg-sec { padding-top: 40px; scroll-margin-top: 16px; }
+.lg-sec h2 { font-size: 21px; line-height: 30px; letter-spacing: -0.01em; }
+.lg-sec p { margin-top: 14px; font-size: 16px; line-height: 28px; color: var(--text); }
+.lg-sec ul, .lg-sec ol { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.lg-sec li { position: relative; padding-left: 18px; font-size: 16px; line-height: 27px; color: var(--text); }
+.lg-sec ul li::before { content: ""; position: absolute; left: 4px; top: 12px; width: 5px; height: 5px; border-radius: 3px; background: var(--muted); }
+.lg-sec ol { counter-reset: item; }
+.lg-sec ol li { padding-left: 24px; counter-increment: item; }
+.lg-sec ol li::before { content: counter(item) "."; position: absolute; left: 2px; color: var(--hint); font-variant-numeric: tabular-nums; }
+.lg-tbl { margin-top: 16px; border: 1px solid var(--hair); border-radius: 14px; overflow: hidden; }
+.lg-tbl table { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 24px; }
+.lg-tbl th { background: var(--raised); color: var(--gray); font-weight: var(--w-semibold); text-align: left; padding: 12px 16px; font-size: 14px; }
+.lg-tbl td { padding: 14px 16px; border-top: 1px solid var(--hair); color: var(--text); vertical-align: top; }
+.lg-cards { display: none; margin-top: 16px; flex-direction: column; gap: 10px; }
+.lg-card { padding: 16px 18px; border-radius: 14px; background: var(--panel); border: 1px solid var(--fill); display: flex; flex-direction: column; gap: 10px; margin: 0; }
+.lg-card div { display: flex; flex-direction: column; gap: 2px; }
+.lg-card dt { font-size: 12px; line-height: 23px; color: var(--hint); font-weight: var(--w-semibold); }
+.lg-card dd { font-size: 15px; line-height: 23px; color: var(--text); }
+.lg-close { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--fill); font-size: 15px; line-height: 24px; color: var(--hint); }
+/* 1024 아래의 조항 목록 접기 상자 */
+.lg-tocbox { display: none; margin-top: 24px; border-radius: 12px; background: var(--panel); border: 1px solid var(--hair); }
+.lg-tocbox summary { height: 52px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; color: var(--text); cursor: pointer; list-style: none; border-radius: 12px; }
+.lg-tocbox summary::-webkit-details-marker { display: none; }
+.lg-tocbox summary span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lg-tocbox summary svg { flex: none; transition: transform .2s; }
+.lg-tocbox[open] summary svg { transform: rotate(180deg); }
+.lg-tocbox nav { display: flex; flex-direction: column; gap: 2px; padding: 0 8px 10px; }
+.lg-tab:focus-visible, .lg-toc a:focus-visible, .lg-tocbox summary:focus-visible, .lg-tocbox nav a:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--primary); }
 
 /* 1024 아래: 한 단 · 가운데 정렬 · 위 메뉴 숨김 · 기능 카드 2열 · 이렇게 써요는 폰 아래 지금 단계 */
 @media (max-width: 1023px) {
@@ -266,6 +295,10 @@ img { display: block; max-width: 100%; }
   .steps { display: none; }
   .flow-cap { display: flex; }
   .flow-phone .phone { width: 260px; }
+  .lg-grid { grid-template-columns: 1fr; gap: 0; padding-top: 8px; }
+  .lg-toc { display: none; }
+  .lg-tocbox { display: block; }
+  .lg-head h1 { font-size: 36px; line-height: 48px; }
 }
 /* 640 아래: 버튼 꽉 차게 · 기능 카드 1열 · 첫 화면 폰 하나 */
 @media (max-width: 639px) {
@@ -300,9 +333,17 @@ img { display: block; max-width: 100%; }
   .sec { padding-block: 72px; }
   .bottom .wrap { flex-direction: column; align-items: flex-start; gap: 18px; }
   .bottom nav { flex-wrap: wrap; gap: 10px 16px; }
+  .lg-head { padding-top: 32px; }
+  .lg-head h1 { font-size: 30px; line-height: 40px; }
+  .lg-tbl { display: none; }
+  .lg-cards { display: flex; }
+  .lg-sec h2 { font-size: 19px; line-height: 28px; }
+  .lg-sec p, .lg-sec li, .lg-intro { font-size: 15px; line-height: 26px; }
+  .lg-intro { padding: 20px; }
+  .lg-tabs { margin-left: calc(-1 * var(--gutter-l)); margin-right: calc(-1 * var(--gutter-r)); padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn, .step, .step-t, .step-d, .dot, .dot::before, .flow-phone .scr img { transition: none; }
+  .btn, .step, .step-t, .step-d, .dot, .dot::before, .flow-phone .scr img, .lg-tocbox summary svg { transition: none; }
   .step.on .step-track span { animation: none; height: 100%; }
 }
