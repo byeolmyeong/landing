@@ -12,6 +12,8 @@ export const legalInfo = {
   operator: '별명팀',
   contact: 'support@byeolmyeong.com',
   effective: '2026년 11월 20일',
+  /** 처리방침 · 개인정보 수집 · 이용 동의의 시행일 — 제품 분석(앰플리튜드)을 더하며 바뀜(앱 결정 040 · 081). 약관 · 마케팅 동의는 위 effective 그대로 */
+  privacyEffective: '2026년 11월 26일',
 }
 
 export type LegalBlock =
@@ -23,7 +25,7 @@ export type LegalBlock =
 export type LegalSection = { title: string; blocks: LegalBlock[] }
 export type LegalDocument = { title: string; intro: string; sections: LegalSection[]; closing: string }
 
-const { operator, contact, effective } = legalInfo
+const { operator, contact, effective, privacyEffective } = legalInfo
 
 export const privacy: LegalDocument = {
   title: '개인정보 처리방침',
@@ -44,6 +46,7 @@ export const privacy: LegalDocument = {
             '공유 카드 제공',
             '고객 문의 응대',
             '부정 이용 방지 및 보안 관리',
+            '서비스 이용 통계 분석과 서비스 개선(어떤 화면 · 기능이 쓰이는지)',
           ],
         },
       ],
@@ -56,11 +59,12 @@ export const privacy: LegalDocument = {
           ul: [
             '회원가입 시(필수): 소셜 로그인 식별값(카카오 · Google · Apple이 제공하는 고유 식별자), 이메일 주소(카카오 · Google · Apple이 제공하는 값. Apple에서 \'이메일 가리기\'를 고르면 Apple이 만든 전달용 주소), 닉네임. 이름 · 프로필 사진은 받지 않습니다.',
             '마케팅 정보 수신 동의 시(선택): 동의 여부, 동의 · 철회 일시',
-            '푸시 알림 수신 동의 시(선택): 동의 여부, 동의 · 철회 일시',
+            '푸시 알림 수신 동의 시(선택): 동의 여부, 동의 · 철회 일시, 기기의 푸시 알림 토큰',
             '출생 정보: 생년월일(필수), 태어난 시각과 태어난 곳(선택)',
             '공유 시: 공유 카드에 담긴 내용(닉네임, 별명 · 풀이 한 줄 등)',
             '문의 시: 문의 종류 · 내용, 문의를 보낸 앱의 운영체제(iOS · Android)와 앱 버전',
             '서비스 이용 과정에서 자동 생성되는 정보: 로그인 세션 정보, 서비스 이용 기록',
+            '이용 통계(앱 · 웹 이용 시 자동 수집): 본 화면과 쓴 기능 등 정해진 이용 기록, 기기 정보(운영체제와 버전, 기기 모델, 언어, 앱 버전), 접속 국가 · 지역(접속 정보로 추정), 기기 · 브라우저에 저장하는 임의의 식별값, 분석용 회원 식별값(회원 식별자로 만든 되돌릴 수 없는 값). 출생 정보 · 이름 · 이메일 · 풀이 글은 담지 않으며, 광고 식별자(IDFA · 광고 ID)는 수집하지 않고 IP 주소는 저장하지 않도록 설정합니다.',
           ],
         },
       ],
@@ -75,7 +79,7 @@ export const privacy: LegalDocument = {
             rows: [
               ['회원 정보(이메일, 닉네임, 출생 정보, 받은 풀이 · 리포트, 공유 카드, 앱 내 문의 포함)', '회원 탈퇴 시까지'],
               ['마케팅 정보 · 푸시 알림 수신 동의 기록', '동의 철회 또는 회원 탈퇴 시까지'],
-              ['서비스 이용 기록', '1년'],
+              ['서비스 이용 기록(이용 통계 포함)', '1년'],
               [`이메일 문의 기록(${contact})`, '3년'],
             ],
           },
@@ -103,8 +107,16 @@ export const privacy: LegalDocument = {
               ['Cloudflare, Inc.', '도메인 운영 · 이메일 전달', '미국'],
               ['Google LLC', '이메일 문의 처리(Gmail)', '미국'],
               ['Resend', '이메일 발송', '미국'],
+              ['Amplitude, Inc.', '서비스 이용 통계 분석. 출생 정보 · 이름 · 이메일 · 풀이 글은 보내지 않습니다.', '미국'],
+              ['650 Industries, Inc.(Expo)', '앱 푸시 알림 전달. 기기 푸시 토큰과 알림 문구만 전달하며, 알림 문구는 전달 뒤 저장하지 않습니다.', '미국'],
             ],
           },
+        },
+        {
+          p: `Amplitude, Inc.(미국, privacy@amplitude.com)로의 국외 이전: 이전하는 항목은 제2조의 이용 통계이며, 앱 · 웹을 이용할 때 네트워크를 통해 수시로 전송하고, 제3조의 서비스 이용 기록과 같은 기간 동안 보관합니다. 이전을 원하지 않으면 ${contact} 로 요청할 수 있으며, 요청하면 해당 이용자의 이용 통계를 Amplitude에서 삭제하도록 요청합니다.`,
+        },
+        {
+          p: '650 Industries, Inc.(Expo, 미국, expo.dev/contact)로의 국외 이전: 이전하는 항목은 기기 푸시 토큰과 알림 문구이며, 알림을 보낼 때 네트워크를 통해 전송합니다. 알림 문구는 전달에 필요한 동안만 처리합니다. 휴대폰에서 알림을 허용하지 않으면 이전되지 않습니다.',
         },
         { p: '운영자는 각 수탁사의 계약 조건에 따라 개인정보가 안전하게 관리되도록 합니다.' },
       ],
@@ -131,6 +143,7 @@ export const privacy: LegalDocument = {
       title: '제9조 (쿠키 등 자동 수집 장치)',
       blocks: [
         { p: '웹 서비스는 로그인 상태를 유지하기 위해 쿠키를 사용합니다. 이용자는 브라우저 설정으로 쿠키를 거부할 수 있으나, 이 경우 로그인이 필요한 기능을 이용할 수 없습니다. 운영자는 맞춤형 광고를 위한 정보를 수집하지 않습니다.' },
+        { p: '앱과 웹은 이용 통계를 위해 기기 · 브라우저 저장소(웹은 쿠키 · 로컬 저장소)에 임의의 식별값을 저장합니다. 웹에서는 브라우저 설정으로 저장을 막을 수 있으며, 막아도 서비스 이용에는 제한이 없습니다.' },
       ],
     },
     {
@@ -171,7 +184,7 @@ export const privacy: LegalDocument = {
       ],
     },
   ],
-  closing: `이 개인정보 처리방침은 ${effective}부터 시행합니다.`,
+  closing: `이 개인정보 처리방침은 ${privacyEffective}부터 시행합니다.`,
 }
 
 export const terms: LegalDocument = {
@@ -419,6 +432,7 @@ export const privacyConsent: LegalDocument = {
             '만 14세 미만의 가입 제한',
             '서비스 이용에 필요한 안내 전달과 고객 문의 응대',
             '부정 이용 방지 및 보안 관리',
+            '서비스 이용 통계 분석과 서비스 개선',
           ],
         },
       ],
@@ -432,7 +446,7 @@ export const privacyConsent: LegalDocument = {
             rows: [
               ['필수', '소셜 로그인 식별값(카카오 · Google · Apple이 제공하는 고유 식별자), 이메일 주소, 닉네임, 생년월일, 약관 동의 기록'],
               ['선택', '태어난 시각, 태어난 곳'],
-              ['자동 생성', '로그인 세션 정보, 서비스 이용 기록'],
+              ['자동 생성', '로그인 세션 정보, 서비스 이용 기록, 이용 통계(본 화면과 쓴 기능, 기기 정보, 접속 국가 · 지역, 임의의 식별값, 분석용 회원 식별값)'],
             ],
           },
         },
@@ -440,12 +454,12 @@ export const privacyConsent: LegalDocument = {
     },
     {
       title: '3. 보유 및 이용 기간',
-      blocks: [{ p: '회원 탈퇴 시까지 보관하고, 탈퇴하면 지체 없이 파기합니다. 다만, 서비스 이용 기록은 1년 동안 보관합니다.' }],
+      blocks: [{ p: '회원 탈퇴 시까지 보관하고, 탈퇴하면 지체 없이 파기합니다. 다만, 서비스 이용 기록(이용 통계 포함)은 1년 동안 보관합니다.' }],
     },
     {
       title: '4. 동의를 거부할 권리와 불이익',
       blocks: [{ p: '이용자는 개인정보 수집 · 이용에 동의하지 않을 권리가 있습니다. 다만, 위 필수 항목은 서비스 제공에 꼭 필요하므로 동의하지 않으면 회원가입을 할 수 없습니다.' }],
     },
   ],
-  closing: `이 안내는 ${effective}부터 시행합니다.`,
+  closing: `이 안내는 ${privacyEffective}부터 시행합니다.`,
 }
