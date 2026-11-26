@@ -7,7 +7,7 @@ const props = defineProps<{ error: NuxtError }>()
 const notFound = computed(() => props.error.statusCode === 404)
 
 useHead({
-  title: notFound.value ? '페이지를 찾을 수 없어요 — 별명' : '잠시 문제가 생겼어요 — 별명',
+  title: notFound.value ? '페이지를 찾을 수 없어요 | 별명' : '잠시 문제가 생겼어요 | 별명',
   meta: [{ name: 'robots', content: 'noindex' }],
 })
 
