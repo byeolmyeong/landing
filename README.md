@@ -29,8 +29,9 @@
 - `og/` 와 README 는 배포에 넣지 않는다(`.vercelignore`)
 
 ## 스토어 등록 이미지
-- `store/out/ios/01~08.png`(1290×2796, 앱스토어 아이폰 6.9형) · `store/out/play/01~08.png`(1080×1920, 플레이 휴대폰) · `store/out/play/feature.png`(1024×500, 플레이 대표 그래픽). 앱스토어 · 플레이스토어 앱 페이지의 "미리보기" 칸에 올린다. 아이패드는 앱이 지원하지 않아 없다
+- `store/out/ios/01~08.png`(1290×2796 원본 — **App Store Connect 에는 1179×2556 으로 줄여 올린다**, 아래) · `store/out/play/01~08.png`(1080×1920, 플레이 휴대폰) · `store/out/play/feature.png`(1024×500, 플레이 대표 그래픽). 앱스토어 · 플레이스토어 앱 페이지의 "미리보기" 칸에 올린다. 아이패드는 앱이 지원하지 않아 없다
 - 원본은 `store/shot.html`(sou.zip 스토어 이미지처럼: 위 두 줄 제목 + 실제 아이폰 모양 + 별 하늘. 1 장은 브랜드). 폰 화면은 `store/screens/*.png`(캔버스 앱 보드를 2배로 찍은 것)
+- **앱스토어 올리는 크기(2026-11 기준)**: App Store Connect 의 iPhone 필수 칸은 "Dynamic Island 지원 iPhone(중형 디스플레이)"이고 1179×2556 · 1206×2622 만 받는다. 1290×2796(옛 6.9형)은 "파일 크기가 유효하지 않습니다"로 거절된다(대형 칸은 선택이라 기본 화면에 없다). 찍은 뒤 `sips -z 2556 1179 -s format jpeg -s formatOptions 95 store/out/ios/0N.png --out 0N.jpg` 로 줄인다 — 비율이 거의 같아 잘리지 않는다. 올리기 전에 [스크린숏 규격](https://developer.apple.com/help/app-store-connect/reference/app-information/screenshot-specifications/)에서 필수 칸 크기를 다시 본다
 - 다시 찍기: 저장소 맨 위에서 `python3 -m http.server 47817` 을 띄우고 `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars --window-size=1290,2796 --virtual-time-budget=6000 --screenshot="$PWD/store/out/ios/02.png" "http://127.0.0.1:47817/store/shot.html?s=ios&n=2"` (플레이는 `--window-size=1080,1920` · `s=play`, 대표 그래픽은 `--window-size=1024,500` · `s=feature`)
 - `store/` 는 배포에 넣지 않는다(`.vercelignore`)
 
