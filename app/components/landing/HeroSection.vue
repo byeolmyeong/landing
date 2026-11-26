@@ -12,7 +12,7 @@
       </div>
       <div class="hero-art">
         <PhoneFrame class="p1" src="/screens/reveal.webp" alt="별명 공개 화면: 새벽별 님의 별명은 자유로운 상상력과 단단한 책임감을 함께 지닌, 따뜻하고 독창적인 사람" priority />
-        <PhoneFrame class="p2" src="/screens/home.webp" alt="홈 화면: 내 별명 카드, 오늘의 하늘, 지금 나의 시기, 이 시기의 작은 실천" priority />
+        <PhoneFrame class="p2" src="/screens/home.webp" alt="홈 화면: 맨 위 오늘의 하늘 카드와 사람, 일, 마음의 흐름, 그 아래 오늘의 작은 실천과 지금 나의 시기" priority />
       </div>
     </div>
   </section>
