@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <!-- 스토어 등록 이미지 원본(소유자 2026-11-20 "sou.zip 처럼"). 배포에는 넣지 않는다(.vercelignore).
      ?s=ios|play&n=1..8 은 미리보기 칸 스크린샷, ?s=feature 는 플레이 대표 그래픽. 찍는 법은 README "스토어 등록 이미지".
-     폰 모양 값은 랜딩 app/assets/css/main.css 의 .iphone 과 같다(고치면 둘 다) -->
+     폰 모양 값은 랜딩 app/assets/css/main.css 의 .iphone 과 같다(고치면 둘 다).
+     플레이(s=play · s=feature)는 아이폰 틀을 쓰지 않는다: 구글 미리보기 안내가 기기 그림을 피하라고 하고(answer/9866151), 안드로이드 사용자에게
+     노치 · 옆 단추가 있는 아이폰을 보여 주지 않으려고. 틀 없는 둥근 화면 + 안드로이드 상태 막대(시계 왼쪽, 와이파이 · 신호 · 배터리 오른쪽)로 덮는다 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
 <style>
   :root { --ink: #F2F3F7; --gray: #A9ABB7; --accent: #8F99FF; --lilac: #9AA3FF; }
@@ -30,6 +32,18 @@
   .ip-silent { left: -.6cqw; top: 38cqw; height: 7cqw; } .ip-vol1 { left: -.6cqw; top: 54cqw; height: 13cqw; }
   .ip-vol2 { left: -.6cqw; top: 70cqw; height: 13cqw; } .ip-power { right: -.6cqw; top: 60cqw; height: 20cqw; }
 
+  /* 플레이: 틀 없는 화면. 화면 그림(390×844 의 2 · 3배)에 박힌 iOS 상태 막대(위 4% 안쪽)를 안드로이드 막대로 덮는다.
+     화면 높이 = 너비 × 844/390 = 216.4cqw, 막대 높이 11.6cqw ≈ 5.4% */
+  .droid { container-type: inline-size; position: absolute; }
+  .d-scr { position: relative; aspect-ratio: 390 / 844; border-radius: 7cqw; overflow: hidden; background: #0D0E12;
+    box-shadow: 0 0 0 .35cqw rgba(242, 243, 247, .16), 0 6cqw 14cqw rgba(0, 0, 0, .6); }
+  .d-scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .d-bar { position: absolute; left: 0; right: 0; top: 0; height: 11.6cqw; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 6.2cqw 0 6.6cqw; box-sizing: border-box; font-size: 3.7cqw; font-weight: 500; letter-spacing: .01em; color: #F2F3F7;
+    -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent); }
+  .d-bar svg { height: 3.6cqw; width: auto; display: block; }
+  .d-nav { position: absolute; z-index: 2; bottom: 2.2cqw; left: 50%; transform: translateX(-50%); width: 27cqw; height: 1.1cqw; border-radius: 1cqw; background: rgba(242, 243, 247, .85); }
+
   /* 첫 장(브랜드) */
   .brand { position: absolute; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
   .pill { border: .25em solid var(--lilac); color: var(--lilac); border-radius: 999px; font-weight: 600; letter-spacing: -0.01em; }
@@ -52,16 +66,21 @@ document.body.style.setProperty('--h', H + 'px')
 const shot = src => `screens/${src}.png`
 // 위 두 줄(핵심 낱말은 em) · 폰 화면. 문구는 랜딩 주요 기능과 같은 말
 // 1 장은 브랜드, 2~8 장은 아래 차례대로
+// bar: 플레이 상태 막대를 덮는 색(화면 그림의 맨 위 색과 같게). 없으면 앱 바탕 #0D0E12
+const REVEAL_BAR = 'linear-gradient(90deg, #0f1120, #11142b 50%, #0f1120)'
 const SLIDES = [
-  { t: '태어난 순간의 하늘이<br>지어 준 <em>나의 별명</em>', img: shot('reveal') },
+  { t: '태어난 순간의 하늘이<br>지어 준 <em>나의 별명</em>', img: shot('reveal'), bar: REVEAL_BAR },
   { t: '<em>매일</em> 다시 열어 보는<br>나의 하늘', img: shot('home') },
   { t: '<em>오늘의 하늘</em>로<br>하루를 가볍게 시작해요', img: shot('today-sky') },
   { t: '나를 <em>다섯 가지</em>로<br>더 자세히 읽어요', img: shot('me-personality') },
-  { t: '<em>이번 달 · 올해 · 인생</em>의<br>흐름을 한눈에', img: shot('timing-year') },
+  { t: '<em>이번 달, 올해, 인생</em>의<br>흐름을 한눈에', img: shot('timing-year') },
   { t: '태어난 순간의 하늘을<br><em>한 장의 지도</em>로', img: shot('sky-map') },
-  { t: '<em>별명 카드</em>로<br>스토리에 바로 공유해요', img: 'screens/share-sheet.png' },
+  { t: '<em>별명 카드</em>로<br>스토리에 바로 공유해요', img: 'screens/share-sheet.png', bar: '#050607' },
 ]
 const phone = (src, css) => `<div class="iphone" style="${css}"><span class="ip-btn ip-silent"></span><span class="ip-btn ip-vol1"></span><span class="ip-btn ip-vol2"></span><span class="ip-btn ip-power"></span><div class="ip-frame"><div class="scr"><img src="${src}"></div><span class="ip-notch"></span><span class="ip-home"></span></div></div>`
+// 안드로이드 상태 막대 아이콘: 와이파이(부채꼴) · 신호(삼각형) · 배터리(가로 알약)
+const DROID_ICONS = '<svg viewBox="0 0 60 16" fill="currentColor"><path d="M8 14 L.6 6.4 A10.6 10.6 0 0 1 15.4 6.4 Z"/><path d="M20 14 L33 1.5 V14 Z"/><rect x="38" y="4" width="18" height="9" rx="2.6"/><rect x="56.6" y="6.6" width="2" height="3.8" rx="1"/></svg>'
+const droid = (src, css, bar = '#0D0E12') => `<div class="droid" style="${css}"><div class="d-scr"><img src="${src}"><div class="d-bar" style="background:${bar}"><span>9:41</span>${DROID_ICONS}</div><span class="d-nav"></span></div></div>`
 const root = document.getElementById('root')
 
 // 별 점: 같은 씨앗이라 다시 찍어도 같은 하늘
@@ -81,8 +100,8 @@ if (kind === 'feature') {
     <div style="margin-top:12px;font-size:50px;line-height:64px;font-weight:600;letter-spacing:-0.03em">점성술을 몰라도<br>읽히는 나의 별명</div>
     <span style="margin-top:26px;display:inline-flex;align-items:center;gap:10px;font-size:24px;font-weight:600;color:#C8CAD3"><img src="../public/brand/byeoli.svg" style="width:30px;height:30px">별명</span>
   </div>
-  ${phone(shot('reveal'), 'left:596px;top:84px;width:196px;opacity:.92')}
-  ${phone(shot('home'), 'left:770px;top:34px;width:208px')}`
+  ${droid(shot('reveal'), 'left:604px;top:92px;width:184px;opacity:.92', REVEAL_BAR)}
+  ${droid(shot('home'), 'left:776px;top:40px;width:196px')}`
 } else if (n === 1) {
   // 첫 장: 꼬리표 · 큰 이름 · 별이 (sou.zip 첫 장처럼)
   const s = W / 1290
@@ -98,10 +117,11 @@ if (kind === 'feature') {
   const sl = SLIDES[n - 2]
   const ios = kind === 'ios'
   const font = ios ? 96 : 74, lh = ios ? 136 : 104, top = ios ? 280 : 170
-  const pw = ios ? 860 : 560, ptop = ios ? 760 : 520
+  const pw = ios ? 860 : 600, ptop = ios ? 760 : 490
+  const where = `left:${(W - pw) / 2}px;top:${ptop}px;width:${pw}px`
   root.innerHTML = `<div class="glow" style="width:${W * 1.1}px;height:${W * 1.1}px;left:${-W * .05}px;top:${ptop + pw * .4}px;opacity:.7"></div>
   <div class="cap" style="top:${top}px"><h1 style="font-size:${font}px;line-height:${lh}px">${sl.t}</h1></div>
-  ${phone(sl.img, `left:${(W - pw) / 2}px;top:${ptop}px;width:${pw}px`)}`
+  ${ios ? phone(sl.img, where) : droid(sl.img, where, sl.bar)}`
 }
 </script>
 </body>
