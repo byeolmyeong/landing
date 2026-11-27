@@ -77,7 +77,7 @@ img { display: block; max-width: 100%; }
 .btn-primary { background: var(--primary); color: var(--ink); }
 .btn-primary:hover { background: var(--glow-mid); }
 .btn-sm { height: 42px; padding: 0 18px; font-size: 14px; border-radius: 10px; }
-.btn:focus-visible, .nav a:focus-visible, .step:focus-visible, .dot:focus-visible, .faq-q:focus-visible, .logo:focus-visible, .bottom a:focus-visible {
+.btn:focus-visible, .nav a:focus-visible, .step:focus-visible, .dot:focus-visible, .faq-q:focus-visible, .logo:focus-visible, .bottom a:focus-visible, .lg-link:focus-visible {
   outline: none; box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--primary);
 }
 
@@ -253,6 +253,14 @@ img { display: block; max-width: 100%; }
 .lg-head { padding-top: 56px; }
 .lg-head h1 { font-size: 44px; line-height: 58px; letter-spacing: -0.03em; }
 .lg-date { margin-top: 12px; font-size: 15px; line-height: 22px; color: var(--hint); }
+/* 안내 한 편(guide, 계정 삭제 안내): 시행일 · 문서 탭 대신 Play 앱 이름 · 운영자. 탭 줄처럼 아래 선으로 본문과 나눈다 */
+.lg-meta { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 28px; padding-bottom: 24px; border-bottom: 1px solid var(--fill); font-size: 15px; line-height: 22px; }
+.lg-meta div { display: flex; gap: 10px; }
+.lg-meta dt { color: var(--hint); }
+.lg-meta dd { color: var(--ink); font-weight: var(--w-medium); }
+/* 문단 뒤 링크(처리방침 제7조 → 계정 삭제 안내, 메일 쓰기) */
+.lg-link { margin-left: 6px; color: var(--lilac); font-weight: var(--w-medium); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.lg-link:hover { color: var(--ink); }
 .lg-tabs { margin-top: 32px; display: flex; gap: 8px; border-bottom: 1px solid var(--fill); padding-bottom: 20px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
 .lg-tabs::-webkit-scrollbar { display: none; }
 .lg-tab { height: 40px; padding: 0 18px; border-radius: 20px; background: var(--panel); border: 1px solid var(--fill); color: var(--gray); font-size: 15px; font-weight: var(--w-medium); display: inline-flex; align-items: center; flex: none; }

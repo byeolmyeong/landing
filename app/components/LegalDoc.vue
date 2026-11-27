@@ -1,10 +1,12 @@
 <!-- 약관 · 정책 한 편(캔버스 "랜딩" L2 보드). 글은 app/data/legal.ts 에 있고 여기서 바꾸지 않는다(앱과 같은 글 — 앱 결정 043).
      제목 + 시행일 → 문서 탭 넷 → 데스크톱은 왼쪽 조항 목록(스크롤에 따라 지금 조항 밝게) + 본문(읽기 폭 740),
-     1024 아래는 조항 목록을 접기 상자로, 640 아래 표는 줄마다 카드로 -->
+     1024 아래는 조항 목록을 접기 상자로, 640 아래 표는 줄마다 카드로.
+     guide(계정 삭제 안내처럼 약관이 아닌 안내 한 편): 문서 탭 대신 Play 앱 이름 · 운영자 줄, 목록 이름은 "차례" -->
 <script setup lang="ts">
 import { legalInfo, type LegalDocument } from '~/data/legal'
 
-const props = defineProps<{ doc: LegalDocument }>()
+const props = defineProps<{ doc: LegalDocument; guide?: boolean }>()
+const tocName = computed(() => (props.guide ? '차례' : '조항'))
 
 const tabs = [
   { to: '/terms', label: '이용약관' },
@@ -60,8 +62,12 @@ onBeforeUnmount(() => {
   <article class="legal">
     <div class="wrap lg-head">
       <h1>{{ doc.title }}</h1>
-      <p class="lg-date">시행일 {{ legalInfo.effective }}</p>
-      <nav ref="tabRow" class="lg-tabs" aria-label="약관과 정책">
+      <dl v-if="guide" class="lg-meta">
+        <div><dt>Google Play 앱</dt><dd>{{ legalInfo.playAppName }}</dd></div>
+        <div><dt>운영</dt><dd>{{ legalInfo.operator }}</dd></div>
+      </dl>
+      <p v-else class="lg-date">시행일 {{ legalInfo.effective }}</p>
+      <nav v-if="!guide" ref="tabRow" class="lg-tabs" aria-label="약관과 정책">
         <NuxtLink
           v-for="t in tabs"
           :key="t.to"
@@ -72,8 +78,8 @@ onBeforeUnmount(() => {
         >{{ t.label }}</NuxtLink>
       </nav>
       <details class="lg-tocbox" :open="tocOpen" @toggle="tocOpen = ($event.target as HTMLDetailsElement).open">
-        <summary><span>조항 목록 · {{ doc.sections[current]?.title }}</span><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="#7C7E8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></summary>
-        <nav aria-label="조항 목록">
+        <summary><span>{{ guide ? '차례' : '조항 목록' }} · {{ doc.sections[current]?.title }}</span><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="#7C7E8A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></summary>
+        <nav :aria-label="`${tocName} 목록`">
           <a v-for="(s, i) in doc.sections" :key="s.title" :href="`#${sid(i)}`" :class="{ on: i === current }" @click="tocOpen = false">{{ s.title }}</a>
         </nav>
       </details>
@@ -81,8 +87,8 @@ onBeforeUnmount(() => {
 
     <div class="wrap lg-grid">
       <aside class="lg-toc">
-        <nav class="lg-toc-in" aria-label="조항">
-          <span class="lg-toc-t">조항</span>
+        <nav class="lg-toc-in" :aria-label="tocName">
+          <span class="lg-toc-t">{{ tocName }}</span>
           <a v-for="(s, i) in doc.sections" :key="s.title" :href="`#${sid(i)}`" :class="{ on: i === current }" :aria-current="i === current ? 'location' : undefined">{{ s.title }}</a>
         </nav>
       </aside>
@@ -92,7 +98,7 @@ onBeforeUnmount(() => {
         <section v-for="(section, i) in doc.sections" :id="sid(i)" :key="section.title" class="lg-sec">
           <h2>{{ section.title }}</h2>
           <template v-for="(block, b) in section.blocks" :key="b">
-            <p v-if="'p' in block">{{ block.p }}</p>
+            <p v-if="'p' in block">{{ block.p }}<template v-if="block.link"> <NuxtLink :to="block.link.to" class="lg-link">{{ block.link.label }}</NuxtLink></template></p>
             <ul v-else-if="'ul' in block">
               <li v-for="item in block.ul" :key="item">{{ item }}</li>
             </ul>
