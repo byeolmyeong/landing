@@ -28,12 +28,14 @@ export type LegalBlock =
   | { table: { head: string[]; rows: string[][] } }
 
 export type LegalSection = { title: string; blocks: LegalBlock[] }
-export type LegalDocument = { title: string; intro: string; sections: LegalSection[]; closing: string }
+/** effective: 머리의 "시행일" 줄. 맺음말(closing)의 시행일과 같은 값을 넣는다 — 처리방침 · 수집 · 이용 동의는 privacyEffective, 약관 · 마케팅 동의는 effective. 안내(guide)는 비운다 */
+export type LegalDocument = { title: string; effective?: string; intro: string; sections: LegalSection[]; closing: string }
 
 const { operator, contact, effective, privacyEffective } = legalInfo
 
 export const privacy: LegalDocument = {
   title: '개인정보 처리방침',
+  effective: privacyEffective,
   intro: '별명(이하 "서비스")의 운영자(이하 "운영자")는 이용자의 개인정보를 중요하게 생각하며, 「개인정보 보호법」 등 관련 법령을 지킵니다. 이 처리방침은 별명 앱과 웹(app.byeolmyeong.com, byeolmyeong.com)을 이용할 때 처리하는 개인정보에 관한 사항을 정합니다.',
   sections: [
     {
@@ -198,6 +200,7 @@ export const privacy: LegalDocument = {
 
 export const terms: LegalDocument = {
   title: '이용약관',
+  effective,
   intro: '이 약관은 별명 서비스를 이용하는 데 필요한 사항을 정합니다.',
   sections: [
     {
@@ -366,6 +369,7 @@ export const terms: LegalDocument = {
  */
 export const marketing: LegalDocument = {
   title: '마케팅 정보 수신 동의 약관',
+  effective,
   intro: '이 약관은 별명(이하 "서비스")의 운영자(이하 "운영자")가 보내는 새 기능 · 이벤트 · 혜택 안내 등 광고성 정보의 수신에 대한 이용자의 동의를 정합니다. 이 동의는 선택입니다.',
   sections: [
     {
@@ -429,6 +433,7 @@ export const marketing: LegalDocument = {
  */
 export const privacyConsent: LegalDocument = {
   title: '개인정보 수집 · 이용 동의',
+  effective: privacyEffective,
   intro: '별명(이하 "서비스")의 운영자(이하 "운영자")는 회원가입과 서비스 제공을 위해 아래와 같이 개인정보를 수집 · 이용합니다. 자세한 내용은 개인정보 처리방침(byeolmyeong.com/privacy)에서 볼 수 있습니다.',
   sections: [
     {

@@ -66,7 +66,7 @@ onBeforeUnmount(() => {
         <div><dt>Google Play 앱</dt><dd>{{ legalInfo.playAppName }}</dd></div>
         <div><dt>운영</dt><dd>{{ legalInfo.operator }}</dd></div>
       </dl>
-      <p v-else class="lg-date">시행일 {{ legalInfo.effective }}</p>
+      <p v-else class="lg-date">시행일 {{ doc.effective ?? legalInfo.effective }}</p>
       <nav v-if="!guide" ref="tabRow" class="lg-tabs" aria-label="약관과 정책">
         <NuxtLink
           v-for="t in tabs"
